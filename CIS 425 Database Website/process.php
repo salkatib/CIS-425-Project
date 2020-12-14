@@ -1,46 +1,27 @@
  <?php
 
-   $con = mysqli_connect("localhost", "admin_name", "password");
-   if (!connect) { die('Connection Failed: ' .
-     mysql_error()); { mysql_select_db("data_store", $connect);
+ $host = "localhost";
+ $username = "root";
+ $user_pass = "";
+ $database_in_use = "data_store";
+ $database_in_use1 = "registrar_office";
 
-    $user_info = "INSERT INTO table_name (username, email) VALUES ('$_POST[username]', '$_POST[email]')"; if (!mysql_query($user_info, $connect)) { die('Error: ' . mysql_error()); }
+ $mysqli = new mysqli($host, $username, $user_pass, $database_in_use);
+if ($mysqli->connect_errno) {
+  echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+echo $mysqli->host_info . "<br>";
 
-  echo "Your information was added to the database.";
+$sql = "SELECT studentId, firstName, lastName, phoneNumber, email, gender, dateOfBirth, classStatus, gpaNum, numCreditHours FROM student_info";
+//$sql = "SELECT gpaNum FROM student_info WHERE studentId = 1";
 
-  mysql_close($connect);
+$mysqli = new mysqli($host, $username, $user_pass, $database_in_use1);
+if ($mysqli->connect_errno) {
+ echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+echo $mysqli->host_info . "<br>";
 
-
-/*
-  $servername = "localhost";
-  $username = "username";
-  $password = "password";
-  $dbname = "myDB";
-
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-  // sql to create table
-  $sql = "CREATE TABLE MyGuests (
-  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  firstName VARCHAR(30) NOT NULL,
-  lastName VARCHAR(30) NOT NULL,
-  email VARCHAR(50),
-  reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-  )";
-
-  if ($conn->query($sql) === TRUE) {
-    echo "Table MyGuests created successfully";
-  } else {
-    echo "Error creating table: " . $conn->error;
-  }
-
-  $conn->close();
-  */
+$sql3 = "SELECT firstName, lastName, dateOfBirth, classStatus, gpaNum, numCreditHours FROM registrar_office";
 
 
 
@@ -55,10 +36,32 @@ if(isset($_POST["submit"])) {
   $classStatus = $_POST['status'];
   $gpaNum = $_POST['gpaNum'];
   $numCreditHours = $_POST['numCreditHours'];
-
-  echo "Thank you, $firstName $lastName for applying for the scholarship! \n";
-
-  echo "\n The information you inputted is: $studentNumber, $phoneNumber, $emailAddress, $gender, $dateOfBirth, $classStatus, $gpaNum, $numCreditHours";
 }
+
+$sql2 = "INSERT INTO student_info (studentId, firstName, lastName, phoneNumber, email, gender, dateOfBirth, classStatus, gpaNum, numCreditHours)
+VALUES ('$studentNumber', '$firstName', '$lastName', '$phoneNumber', '$emailAddress', '$gender', '$dateOfBirth', '$classStatus', '$gpaNum', '$numCreditHours')";
+$result2 = $mysqli->query($sql2);
+$result = $mysqli->query($sql);
+
+
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "<br>- Student ID: " . $row["studentId"]. "<br> - First Name: " . $row["firstName"]. "<br> - Last Name: " . $row["lastName"].
+    "<br>- Phone Number: " . $row["phoneNumber"]. "<br>- Email: " . $row["email"]. "<br>- Gender: " . $row["gender"].
+    "<br>- Date of Birth: " . $row["dateOfBirth"]. "<br>- Class Status: " . $row["classStatus"].
+    "<br>- GPA: " . $row["gpaNum"]. "<br>- Number of Credit Hours: " . $row["numCreditHours"]. "<br><br>";
+  }
+} else {
+  echo "0 results";
+}
+$mysqli->close();
+
+  echo "Thank you, $firstName $lastName for applying for the scholarship! <br>";
+
+  echo "<br> The information you inputted is:  Student Number: $studentNumber,". " Phone Number: $phoneNumber,".
+  " Email Address: $emailAddress,". " Gender: $gender,". " Date of Birth: $dateOfBirth,".
+  " Class Status: $classStatus,". " GPA: $gpaNum,". " Number of Credit Hours: $numCreditHours";
 
 ?>
