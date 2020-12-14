@@ -1,0 +1,36 @@
+
+body {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  border-style: ridge;
+  border-width: 15px;
+  border-color: CornflowerBlue;
+  background-color: Bisque;
+  padding-left: 10px;
+}
+
+h1 {
+  border-bottom: 5px solid CornflowerBlue;
+  font-size: 60px;
+  text-align: center;
+
+  font-family: Garamond, serif;
+
+}
+
+h2 {
+  color: white;
+  text-shadow: 1px 1px 8px black;
+}
+
+header {
+}
+
+main {
+}
+
+
+footer {
+  border: 1px solid;
+}
