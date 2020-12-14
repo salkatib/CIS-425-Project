@@ -4,7 +4,6 @@
  $username = "root";
  $user_pass = "";
  $database_in_use = "data_store";
- $database_in_use1 = "registrar_office";
 
  $mysqli = new mysqli($host, $username, $user_pass, $database_in_use);
 if ($mysqli->connect_errno) {
@@ -15,13 +14,9 @@ echo $mysqli->host_info . "<br>";
 $sql = "SELECT studentId, firstName, lastName, phoneNumber, email, gender, dateOfBirth, classStatus, gpaNum, numCreditHours FROM student_info";
 //$sql = "SELECT gpaNum FROM student_info WHERE studentId = 1";
 
-$mysqli = new mysqli($host, $username, $user_pass, $database_in_use1);
-if ($mysqli->connect_errno) {
- echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}
-echo $mysqli->host_info . "<br>";
-
-$sql3 = "SELECT firstName, lastName, dateOfBirth, classStatus, gpaNum, numCreditHours FROM registrar_office";
+/* $sql3 = "SELECT firstName, lastName, dateOfBirth, classStatus, gpaNum, numCreditHours FROM registrar_office";
+if ($sql === $sql3)
+*/
 
 
 
