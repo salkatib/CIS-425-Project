@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Scholarship Awards</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/scripts.js"></script>
+
+  </head>
+  <body>
+    <header>
+      <h1>B.S.T. Smart Scholarship</h1>
+      </header>
+
+      <main>
+        <p>Welcome to the B.S.T. Scholarship Committee website. Our 3 members select a
+          scholarship winner from the hundreds of applications we recieve.</p>
+          <p><b>WANT TO APPLY FOR OUR SCHOLARSHIP?</b> Apply below for your application to be considered by the B.S.T. Scholarship Committee </p>
+
+          <form action="process.php" method="post">
+            <h2>Fill your application out below!</h2>
+            Student Number: <input type = 'text' name = "studentNumber"><br><br>
+            First Name: <input type = 'text' name = "firstName"><br><br>
+            Last Name: <input type = 'text' name = "lastName"><br><br>
+            Phone Number: <input type = 'text' name = "phoneNumber"><br><br>
+            Email Address: <input type = 'text' name = "emailAddress"><br><br>
+            <form name="form1" id="form1">
+              Gender: <select name="subject" id="gender">
+                <option value="" selected="selected">Male</option>
+                <option value="" selected="selected">Female</option>
+                <option value="" selected="selected">Other</option>
+              </select>
+                <br><br>
+            </form>
+            <label for="start">Date of Birth:</label>
+
+            <input type="date" id="start" name="trip-start"
+            value="2020-12-11"
+            min="1990-01-01" max="2020-12-11"><br>
+
+            <form name="form1" id="form1"> <br>
+              Class Status: <select name="subject" id="classStatus">
+                <option value="" selected="selected">Freshman</option>
+                <option value="" selected="selected">Sophomore</option>
+                <option value="" selected="selected">Junior</option>
+                <option value="" selected="selected">Senior</option>
+              </select>
+                <br><br>
+            </form>
+            Cumulative GPA (On a 4.0 Scale): <input type = 'text' name = "gpaNum"></br><br>
+            Number of Credit Hours taken during the current semester: <input type = 'text' name = "numCreditHours"></br>
+
+
+            <button name = "submit">Submit</button>
+          </form>
+
+        </main>
+
+          <footer id = yearName>
+        </footer>
+
+  </body>
+</html>
